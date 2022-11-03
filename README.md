@@ -17,7 +17,7 @@ HTTP аутентификация
 
 #### [1. Пользовательский интерфейс](https://www.figma.com/proto/gyvgKWgWAz8zX9DbhoBr8f/Lab-1?node-id=0%3A3&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=0%3A3)
 
-![Интерфейс](https://github.com/totomiPo/HTTP-authentication/blob/main/Пользовательский%20интерфейс.png)
+![Интерфейс](https://github.com/Gusenitca/666/blob/main/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81.png)
 
 #### 2. Пользовательский сценарий работы
 Первоначально пользователь попадает на форму входа **index.php**.  
