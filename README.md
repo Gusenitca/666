@@ -30,7 +30,7 @@ HTTP аутентификация
 Вторая ссылка перенаправляет на страницу смены пароля **update.php**. На этой странице нужно ввести старый, новый пароль и подтверждение нового пароля и нажать на кнопку “Update”. В случае корректного ввода пользователь перенаправляется на главную страницу **profile.php** и на ней вверху отображается сообщение об успешной смене пароля. Если же он ввел какие-то данные неверно, то происходит возврат на страницу обновления пароля, вверху будет написано сообщение об ошибке. 
 
 #### 3. API сервера и хореография
-![Хореография](https://github.com/totomiPo/HTTP-authentication/blob/main/Хореография.png)
+![Хореография](https://github.com/Gusenitca/666/blob/main/%D1%85%D0%BE%D1%80%20%D1%81%D1%85%D0%B5%D0%BC.png)
 
 #### 4. Структура базы данных
 
@@ -45,16 +45,14 @@ HTTP аутентификация
 #### 5. Алгоритм
 
 _Вход_  
-![Вход](M:\ospanel\domains\localhost.вход.png)  
+![Вход](https://github.com/Gusenitca/666/blob/main/%D0%B2%D1%85%D0%BE%D0%B4.png)  
   
 _Регистрация_  
-![Регистрация](https://github.com/totomiPo/HTTP-authentication/blob/main/Авторизация.png)  
+![Регистрация](https://github.com/Gusenitca/666/blob/main/%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F.png)  
   
 _Восстановление пароля_  
-![Восстановление пароля](https://github.com/totomiPo/HTTP-authentication/blob/main/Восстановление%20пароля.png)  
+![Восстановление пароля](https://github.com/Gusenitca/666/blob/main/%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D1%8C%20%D1%80%D0%B5%D1%81%D0%BE%D0%B2%D0%B5%D1%80.png)  
   
-_Обновление пароля_  
-![Обновление пароля](https://github.com/totomiPo/HTTP-authentication/blob/main/Обновление%20пароля.png)  
 #### 6. HTTP запрос/ответ
 **Запрос**  
 GET /register.php HTTP/1.1  
@@ -76,10 +74,14 @@ Pragma: no-cache
 Server: Apache  
 
 #### 7. Значимые фрагменты кода
+
+ _Вход в профиль_
 ```php
-$check_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login'");
+    $check_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login'");
     if (mysqli_num_rows($check_user) === 1) {
+
         $user = mysqli_fetch_assoc($check_user);
+
         if(password_verify($password, $user['password'])) {
             $_SESSION['user'] = [
                 "id" => $user['id'],
@@ -96,23 +98,30 @@ $check_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$lo
         header('Location: ../index.php');
     }
 ```
- _Вход в профиль_
+_Регистрация пользователя_
 ```php
-$check_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login'");
-    if (mysqli_num_rows($check_user) === 0) {
+if (mysqli_num_rows($check_user) === 0) {
+
         if ($password === $password_confirm) {
+
             if (!empty($login) || !empty($email) || !empty($password) || !empty($password_confirm)) {
+
                 if (check_pass($password)){
+
                     if (check_email($email)){
+
                         $password_h = password_hash($password, PASSWORD_BCRYPT);
                         mysqli_query($connect, "INSERT INTO `users` (`id`, `login`, `email`, `password`) VALUES (NULL, '$login', '$email', '$password_h')");
                         header('Location: ../profile.php');
+
                     } else {
                         header('Location: ../register.php');
                     }
+
                 } else {
                     header('Location: ../register.php');
                 }
+
             } else {
                 $_SESSION['message'] = "Empty field, repeat enter";
                 header('Location: ../register.php');
@@ -126,25 +135,6 @@ $check_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$lo
         $_SESSION['message'] = "Username already exists";
         header('Location: ../register.php');
     }
-```
-_Регистрация пользователя_
-```php
-$login = mysqli_real_escape_string($connect,$_POST['login']);
-    $sql = mysqli_query($connect,"SELECT * FROM `users` WHERE `login`='$login' LIMIT 1");
-    if ($password === $password_confirm) {
-        if (mysqli_num_rows($sql) === 1){
-            if(check_pass($password)){
-                $user = mysqli_fetch_assoc($sql);
-                if(password_verify($password_old, $user['password'])) {
-                    $new_password = password_hash($password, PASSWORD_BCRYPT);
-                    $update = mysqli_query($connect,"UPDATE `users` SET  `password` = '$new_password' WHERE `login` = '$login' LIMIT 1");
-                    if($update){
-                        $_SESSION['message'] = 'Password changed successfully';
-                        header('Location: ../profile.php');
-                    } else {
-                        $_SESSION['message'] = 'Error in data base';
-                        header('Location: ../update.php');
-                    }
 ```
 _Обновление пароля_
 ```php
@@ -162,8 +152,8 @@ $login = mysqli_real_escape_string($connect,$_POST['login']);
                     $_SESSION['message'] = 'Error in data base';
                     header('Location: ../recovery.php');
 ```
-_Восстановление пароля_
+
 
 Вывод
 ------------------------
-В ходе выполнения лабораторной работы спроектировали и разработали систему авторизации пользователей.
+В ходе выполнения лабораторной работы спроектировали и разработали систему авторизации пользователей которая позволяет регистрировать пользователей, менять пароль и авторизовываться в аккаунт.
