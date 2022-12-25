@@ -15,7 +15,8 @@ HTTP аутентификация
 - Описать структуру базы данных
 - Описать алгоритмы
 
-#### [1. Пользовательский интерфейс](https://www.figma.com/proto/gyvgKWgWAz8zX9DbhoBr8f/Lab-1?node-id=0%3A3&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=0%3A3)
+#### [1. Пользовательский интерфейс]![изображение](https://user-images.githubusercontent.com/90793439/209469526-94866e7b-3b6f-4d76-a3f1-937df4bfccd5.png)
+
 
 ![Интерфейс](https://github.com/Gusenitca/666/blob/main/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81.png)
 
